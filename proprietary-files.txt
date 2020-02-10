@@ -128,6 +128,15 @@ vendor/etc/acdbdata/ZS660KL/ZS660KL_Hdmi_cal.acdb
 vendor/etc/acdbdata/ZS660KL/ZS660KL_Headset_cal.acdb
 vendor/etc/acdbdata/ZS660KL/ZS660KL_Speaker_cal.acdb
 vendor/etc/acdbdata/ZS660KL/ZS660KL_workspaceFile.qwsp
+vendor/etc/acdbdata/ZS660KL_CN/ZS660KL_Bluetooth_cal.acdb
+vendor/etc/acdbdata/ZS660KL_CN/ZS660KL_Codec_cal.acdb
+vendor/etc/acdbdata/ZS660KL_CN/ZS660KL_General_cal.acdb
+vendor/etc/acdbdata/ZS660KL_CN/ZS660KL_Global_cal.acdb
+vendor/etc/acdbdata/ZS660KL_CN/ZS660KL_Handset_cal.acdb
+vendor/etc/acdbdata/ZS660KL_CN/ZS660KL_Hdmi_cal.acdb
+vendor/etc/acdbdata/ZS660KL_CN/ZS660KL_Headset_cal.acdb
+vendor/etc/acdbdata/ZS660KL_CN/ZS660KL_Speaker_cal.acdb
+vendor/etc/acdbdata/ZS660KL_CN/ZS660KL_workspaceFile.qwsp
 
 # Audio-Hardware
 vendor/lib/hw/audio.primary.default.so
@@ -941,6 +950,28 @@ vendor/etc/firmware/10140.bin
 vendor/etc/firmware/10141.bin
 vendor/etc/firmware/10142.bin
 vendor/etc/firmware/10143.bin
+vendor/etc/firmware/10144.bin
+vendor/etc/firmware/10145.bin
+vendor/etc/firmware/10146.bin
+vendor/etc/firmware/10147.bin
+vendor/etc/firmware/10148.bin
+vendor/etc/firmware/10149.bin
+vendor/etc/firmware/10150.bin
+vendor/etc/firmware/10151.bin
+vendor/etc/firmware/10152.bin
+vendor/etc/firmware/10153.bin
+vendor/etc/firmware/10154.bin
+vendor/etc/firmware/10155.bin
+vendor/etc/firmware/10156.bin
+vendor/etc/firmware/10157.bin
+vendor/etc/firmware/10158.bin
+vendor/etc/firmware/10159.bin
+vendor/etc/firmware/10160.bin
+vendor/etc/firmware/10161.bin
+vendor/etc/firmware/10162.bin
+vendor/etc/firmware/10163.bin
+vendor/etc/firmware/10164.bin
+vendor/etc/firmware/10165.bin
 vendor/etc/firmware/102.bin
 vendor/etc/firmware/103.bin
 vendor/etc/firmware/104.bin
@@ -986,9 +1017,30 @@ vendor/etc/firmware/14.bin
 vendor/etc/firmware/140.bin
 vendor/etc/firmware/141.bin
 vendor/etc/firmware/143.bin
+vendor/etc/firmware/144.bin
+vendor/etc/firmware/145.bin
+vendor/etc/firmware/146.bin
+vendor/etc/firmware/147.bin
+vendor/etc/firmware/148.bin
+vendor/etc/firmware/149.bin
 vendor/etc/firmware/14_0832.bin
 vendor/etc/firmware/15.bin
+vendor/etc/firmware/150.bin
+vendor/etc/firmware/151.bin
+vendor/etc/firmware/152.bin
+vendor/etc/firmware/153.bin
+vendor/etc/firmware/154.bin
+vendor/etc/firmware/156.bin
+vendor/etc/firmware/157.bin
+vendor/etc/firmware/158.bin
+vendor/etc/firmware/159.bin
 vendor/etc/firmware/16.bin
+vendor/etc/firmware/160.bin
+vendor/etc/firmware/161.bin
+vendor/etc/firmware/162.bin
+vendor/etc/firmware/163.bin
+vendor/etc/firmware/164.bin
+vendor/etc/firmware/165.bin
 vendor/etc/firmware/2.bin
 vendor/etc/firmware/3.bin
 vendor/etc/firmware/4.bin
@@ -1167,12 +1219,11 @@ vendor/firmware/venus.b04
 vendor/firmware/venus.mdt
 vendor/firmware/wil6210.brd
 vendor/firmware/wil6210.fw
+vendor/firmware/wil6210_CA.brd
 vendor/firmware/wil6210_CN.brd
 vendor/firmware/wil6210_FCC.brd
 vendor/firmware/wil6210_ftm.fw
-vendor/firmware/wlan/qca_cld/COUNTRY
 vendor/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
-vendor/firmware/wlan/qca_cld/wlan_mac.bin
 
 # GPS
 etc/permissions/com.qti.location.sdk.xml
@@ -1279,14 +1330,12 @@ vendor/lib/libadreno_utils.so
 vendor/lib/libC2D2.so
 vendor/lib/libc2d30_bltlib.so
 vendor/lib/libCB.so
-vendor/lib/libEGL_adreno.so
 vendor/lib/libgsl.so
 vendor/lib/libhdr_tm.so
 vendor/lib/libllvm-glnext.so
 vendor/lib/libllvm-qcom.so
 vendor/lib/libOpenCL.so
 vendor/lib/libpvr.so
-vendor/lib/libq3dtools_adreno.so
 vendor/lib/libqseed3.so
 vendor/lib/libsdm-color.so
 vendor/lib/libsdm-diag.so
@@ -1304,14 +1353,12 @@ vendor/lib64/libadreno_utils.so
 vendor/lib64/libC2D2.so
 vendor/lib64/libc2d30_bltlib.so
 vendor/lib64/libCB.so
-vendor/lib64/libEGL_adreno.so
 vendor/lib64/libgsl.so
 vendor/lib64/libhdr_tm.so
 vendor/lib64/libllvm-glnext.so
 vendor/lib64/libllvm-qcom.so
 vendor/lib64/libOpenCL.so
 vendor/lib64/libpvr.so
-vendor/lib64/libq3dtools_adreno.so
 vendor/lib64/libqseed3.so
 vendor/lib64/libsdm-color.so
 vendor/lib64/libsdm-diag.so
@@ -2062,6 +2109,7 @@ vendor/bin/thermal-engine
 vendor/bin/thermalAtdTool
 vendor/bin/Thermal_GPIO
 vendor/etc/thermal-engine.conf
+vendor/etc/thermal-engine_CN.conf
 vendor/etc/thermal_atd.conf
 -vendor/lib/libthermalclient.so
 -vendor/lib64/libthermalclient.so
@@ -2253,7 +2301,6 @@ vendor/etc/yoda_dongle_remove.sh
 vendor/etc/yoda_dongle_switch.sh
 vendor/etc/yoda_gamepad_remove.sh
 vendor/etc/yoda_gamepad_switch.sh
-vendor/factory
 
 # Misc
 -vendor/app/ConnectionSecurityService/ConnectionSecurityService.apk
@@ -2304,6 +2351,7 @@ vendor/bin/hal_proxy_daemon
 vendor/bin/hdcp1prov
 vendor/bin/hdcp2p2prov
 vendor/bin/hw/vendor.ims.airtrigger@1.0-service
+vendor/bin/hw/vendor.ims.airtrigger@1.1-service
 vendor/bin/hw/vendor.ims.colortemp@1.0-service
 vendor/bin/hw/vendor.ims.wifiantennamode@1.0-service
 vendor/bin/hw/vendor.qti.hardware.auralight@1.0-service
@@ -2393,6 +2441,7 @@ vendor/etc/ID/ASUS/Launcher/default_workspace/phone_workspace.xml
 vendor/etc/init/manifest_sku.rc
 vendor/etc/init/qdcmss.rc
 vendor/etc/init/vendor.ims.airtrigger@1.0-service.rc
+vendor/etc/init/vendor.ims.airtrigger@1.1-service.rc
 vendor/etc/init/vendor.ims.colortemp@1.0-service.rc
 vendor/etc/init/vendor.ims.wifiantennamode@1.0-service.rc
 vendor/etc/init/vendor.qti.hardware.auralight@1.0-service.rc
@@ -2488,7 +2537,6 @@ vendor/lib/hw/vendor.qti.hardware.auralight@1.0-impl.so
 vendor/lib/libcert_parse.wpa_s.so
 vendor/lib/libdiagjni.so
 vendor/lib/libfastcrc.so
-vendor/lib/libGLESv2_adreno.so
 vendor/lib/libGPMTEEC_vendor.so
 vendor/lib/libhta_controller.so
 vendor/lib/libhta_hexagon_runtime.so
@@ -2528,7 +2576,6 @@ vendor/lib64/libappclassifier.so
 vendor/lib64/libcert_parse.wpa_s.so
 vendor/lib64/libdiagjni.so
 vendor/lib64/libgameoptfeature.so
-vendor/lib64/libGLESv2_adreno.so
 vendor/lib64/libGPMTEEC_vendor.so
 vendor/lib64/libhta_controller.so
 vendor/lib64/libhta_hexagon_runtime.so
@@ -2558,6 +2605,7 @@ vendor/lib64/libxditk_ISP.so
 vendor/lib64/style.cng
 vendor/lib64/unnhal-acc-hta.so
 vendor/lib64/vendor.ims.airtrigger@1.0.so
+vendor/lib64/vendor.ims.airtrigger@1.1.so
 vendor/lib64/vendor.ims.colortemp@1.0.so
 vendor/lib64/vendor.ims.wifiantennamode@1.0.so
 vendor/lib64/vendor.pixelworks.hardware.display@1.0.so

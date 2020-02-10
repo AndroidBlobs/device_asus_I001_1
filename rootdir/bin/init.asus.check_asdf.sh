@@ -10,6 +10,7 @@ log_dir="$log_root/ASDF"
 log_old="$log_root.old/ASDF"
 max_log=20
 
+sleep 5
 echo 1 > /sys/fs/selinux/log
 sleep 2
 startlog_flag=`getprop persist.vendor.asus.startlog`
@@ -150,12 +151,47 @@ elif [ ".$android_boot" == ".1" ]; then
 		echo "$log_head: 1st boot_completed...." > /proc/asusevtlog
 		#Check if there is an abnormal shutdown occured
 		fcount=0
+		lastShutdownCount=0
 		for fname in /asdf/LastShutdown* /asdf/rtb* /asdf/LastTZ*
 		do
 			if [ -e $fname ]; then
 				fcount=$(($fcount+1))
 			fi
 		done
+
+		for fname in /asdf/LastShutdown*
+		do
+			if [ -e $fname ]; then
+				lastShutdownCount=$(($lastShutdownCount+1))
+			fi
+		done
+
+		if [ $lastShutdownCount -gt 10 ]; then
+			count=$lastShutdownCount
+
+			for fname in /asdf/LastShutdown* 
+			do
+				if [ -e $fname ]; then
+					if [ $count -gt 2 ]; then
+						count=$(($count-1))
+						rm $fname
+					fi
+				fi
+			done
+		
+			count=$lastShutdownCount
+			for fname in /asdf/ASUSSlowg*
+			do
+				if [ -e $fname ]; then
+					if [ $count -gt 2 ]; then
+						$count=$(($count-1))
+						rm $fname
+					fi
+				fi
+			done
+
+		fi
+
 		asdflogcatCount=0
 		for asdflogcat in /asdf/asdf-logcat.*
 		do

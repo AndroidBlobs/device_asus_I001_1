@@ -112,6 +112,8 @@ save_general_log() {
 	mkdir $GENERAL_LOG/ION_Debug
 	cp -r /d/ion/* $GENERAL_LOG/ION_Debug/
 	############################################################################################
+	cp -r /sdcard/mocmna $GENERAL_LOG/ION_Debug/
+	############################################################################################
 	# copy data/logcat_log to data/media
 	ls -R -l /data/logcat_log/ > $GENERAL_LOG/ls_data_logcat_log.txt
 	cp -r   /data/logcat_log/ $GENERAL_LOG
@@ -153,6 +155,10 @@ save_general_log() {
 	cat /d/regmap/spmi0-02/data > $GENERAL_LOG/charger_debug/pmic_reg.txt
 	cat /d/pmic-votable/*/status > $GENERAL_LOG/charger_debug/pmic_voter.txt
 	cat /sys/class/power_supply/*/uevent > $GENERAL_LOG/charger_debug/uevent.txt
+	############################################################################################
+	# save sleep information
+	cat /sys/power/rpmh_stats/master_stats > $SAVE_LOG_PATH/charger_debug/master_stats.txt
+	cat /sys/power/system_sleep/stats > $SAVE_LOG_PATH/charger_debug/system_sleep.txt
 	##############################################################################################
        	AudioServerPid=`ps -ef | grep "audioserver " | sed '1d' | awk '{print $2}'`
        	pmap $AudioServerPid > $GENERAL_LOG/AudioServerMap.txt
@@ -210,6 +216,33 @@ save_general_log() {
 #	    cp $filename  $GENERAL_LOG/$name
 #	    rm $filename
 #	done
+	############################################################################################
+
+        mkdir $GENERAL_LOG/tencent
+        chmod 777 $GENERAL_LOG/tencent
+
+
+        for pid in `ps -ef | grep "tencent"| awk '{print $2}'` ; do
+                name=`cat /proc/$pid/comm`
+                pmap $pid > $GENERAL_LOG/tencent/${name}_pmap.txt
+                cat /proc/$pid/maps > $GENERAL_LOG/tencent/${name}_maps.txt
+                cat /proc/$pid/smaps > $GENERAL_LOG/tencent/${name}_smaps.txt
+        done
+
+        for pid in `ps -ef | grep "audioserver"| awk '{print $2}'` ; do
+                name=`cat /proc/$pid/comm`
+                pmap $pid > $GENERAL_LOG/tencent/${name}_pmap.txt
+                cat /proc/$pid/maps > $GENERAL_LOG/tencent/${name}_maps.txt
+                cat /proc/$pid/smaps > $GENERAL_LOG/tencent/${name}_smaps.txt
+        done
+
+        for pid in `ps -ef | grep "system_server"| awk '{print $2}'` ; do
+                name=`cat /proc/$pid/comm`
+                pmap $pid > $GENERAL_LOG/tencent/${name}_pmap.txt
+                cat /proc/$pid/maps > $GENERAL_LOG/tencent/${name}_maps.txt
+                cat /proc/$pid/smaps > $GENERAL_LOG/tencent/${name}_smaps.txt
+        done
+
 
 	############################################################################################
     micropTest=`cat /sys/class/switch/pfs_pad_ec/state`

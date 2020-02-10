@@ -203,6 +203,7 @@
         <device name="SND_DEVICE_IN_VOICE_HANDSET_TMIC" interface="SLIMBUS_0_TX"/>
         <device name="SND_DEVICE_IN_HEADSET_MIC_NS" interface="SLIMBUS_0_TX"/>
         <device name="SND_DEVICE_IN_USB_HEADSET_MIC_NS" backend="usb-headset-mic" interface="USB_AUDIO_TX"/>
+        <device name="SND_DEVICE_IN_VOICE_RECOG_USB_HEADSET_MIC" backend="usb-headset-mic" interface="USB_AUDIO_TX"/>
         <device name="SND_DEVICE_IN_VOIP_HANDSET_TMIC" interface="SLIMBUS_0_TX"/>
         <device name="SND_DEVICE_IN_VOIP_SPEAKER_TMIC" interface="SLIMBUS_0_TX"/>
         <device name="SND_DEVICE_IN_VOIP_HEADSET_MIC" interface="SLIMBUS_0_TX"/>

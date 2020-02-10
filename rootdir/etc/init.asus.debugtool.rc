@@ -21,6 +21,7 @@ on post-fs-data
 	write  /sys/fs/selinux/log 1
 	mkdir  /data/logcat_log 0777 system system
 	restorecon /data/everbootup
+	start logcat-asdf
 
 # ASUS_BSP --- [thomas]Add logcat_log folder
 
@@ -174,7 +175,7 @@ service saveramdump /system/vendor/bin/saveramdump.sh
     disabled
 
 #log_main log_system
-service logcat /system/bin/logcat -a  -b main -b system -b crash -b kernel -r 10000 -n 40 -v threadtime -f /data/logcat_log/logcat.txt  
+service logcat /system/bin/logcat -a  -b main -b system -b crash -b kernel -r 10000  -v threadtime -f /data/logcat_log/logcat.txt  -N
 	class late_start
 	disabled
 seclabel u:r:savelogmtp:s0
@@ -259,12 +260,12 @@ on property:sys.boot_completed=1
 	
 #ASUS_BSP: [DEBUG] Power On/Off; Restart ---
 #ASUS_BSP: [DEBUG] CPU Performance Mode +++
-service pmodechange /system/vendor/bin/sh /system/vendor/bin/pmodechange.sh
+service pmodechange /system/vendor/bin/pmodechange.sh
     user root
     group root
     disabled
     oneshot
-seclabel u:r:savelogmtp:s0
+seclabel u:r:vendor_init:s0
 
 on property:sys.foregroundapp=*
     start pmodechange

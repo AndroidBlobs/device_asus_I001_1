@@ -253,6 +253,10 @@ echo "cp -r /data/misc/wifi/WifiConfigStore.xml $SAVE_LOG_PATH"
 	cat /d/pmic-votable/*/status > $SAVE_LOG_PATH/charger_debug/pmic_voter.txt
 	cat /sys/class/power_supply/*/uevent > $SAVE_LOG_PATH/charger_debug/uevent.txt
 ############################################################################################
+	# save sleep information
+	cat /sys/power/rpmh_stats/master_stats > $SAVE_LOG_PATH/charger_debug/master_stats.txt
+	cat /sys/power/system_sleep/stats > $SAVE_LOG_PATH/charger_debug/system_sleep.txt
+############################################################################################
 	# save debug report
 	dumpsys -t 30 > $SAVE_LOG_PATH/bugreport.txt
 	echo "dumpsys > $SAVE_LOG_PATH/bugreport.txt"
@@ -328,8 +332,33 @@ echo "cp -r /data/misc/bluetooth/logs $SAVE_LOG_PATH/logcat_log/btsnoop/"
 
 	cp -r /data/misc/update_engine_log $SAVE_LOG_PATH/
 ##############################################################################################
-	AudioServerPid=`ps -ef | grep "audioserver " | sed '1d' | awk '{print $2}'`
-	pmap $AudioServerPid > $SAVE_LOG_PATH/AudioServerMap.txt
+	cp -r /sdcard/mocmna $SAVE_LOG_PATH/
+##############################################################################################
+	mkdir $SAVE_LOG_PATH/tencent
+	chmod 777 $SAVE_LOG_PATH/tencent
+	
+
+	for pid in `ps -ef | grep "tencent"| awk '{print $2}'` ; do 
+		name=`cat /proc/$pid/comm`
+		pmap $pid > $SAVE_LOG_PATH/tencent/${name}_pmap.txt
+		cat /proc/$pid/maps > $SAVE_LOG_PATH/tencent/${name}_maps.txt
+		cat /proc/$pid/smaps > $SAVE_LOG_PATH/tencent/${name}_smaps.txt
+	done
+
+	for pid in `ps -ef | grep "audioserver"| awk '{print $2}'` ; do 
+		name=`cat /proc/$pid/comm`
+		pmap $pid > $SAVE_LOG_PATH/tencent/${name}_pmap.txt
+		cat /proc/$pid/maps > $SAVE_LOG_PATH/tencent/${name}_maps.txt
+		cat /proc/$pid/smaps > $SAVE_LOG_PATH/tencent/${name}_smaps.txt
+	done
+	
+	for pid in `ps -ef | grep "system_server"| awk '{print $2}'` ; do 
+		name=`cat /proc/$pid/comm`
+		pmap $pid > $SAVE_LOG_PATH/tencent/${name}_pmap.txt
+		cat /proc/$pid/maps > $SAVE_LOG_PATH/tencent/${name}_maps.txt
+		cat /proc/$pid/smaps > $SAVE_LOG_PATH/tencent/${name}_smaps.txt
+	done
+
 ##############################################################################################
 dd if=/dev/block/bootdevice/by-name/rawdump  of=/data/vendor/ramdump/ramdump_header.txt bs=4 count=2
 

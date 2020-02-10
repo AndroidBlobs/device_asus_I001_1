@@ -13,4 +13,4 @@ setprop ro.wigigmac $wigig_mac
 
 setprop wifi.version.driver WLAN.HL.3.0-02633-QCAHLSWMTPLZ-1.208798.1
 setprop wigig.version.driver 5.3.0.72
-setprop wigig.dock.version.driver v0.0.0.9
+setprop wigig.dock.version.driver v0.0.0.10

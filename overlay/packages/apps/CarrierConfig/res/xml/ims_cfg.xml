@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <carrier_config_list>
-    <version>yoda_006_004</version>
+    <version>yoda_007_004</version>
     <carrier_config mcc="001">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_vt_available_bool" value="true" />
@@ -280,6 +280,15 @@
         <boolean name="carrier_volte_available_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="405" mnc="756">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
+    <carrier_config mcc="440" mnc="10" country="JP">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
+    <carrier_config mcc="440" mnc="51" country="JP">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
+    <carrier_config mcc="440" mnc="20" country="JP">
         <boolean name="carrier_volte_available_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="454" mnc="03">

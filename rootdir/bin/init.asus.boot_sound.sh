@@ -9,7 +9,10 @@ else
 fi
 
 enabled=`cat /asdf/boot_sound_enabled`
+boot_sound_next_disable=`cat /asdf/boot_sound_next_disable`
 echo "boot_sound: boot_sound_enabled = $enabled" > /dev/kmsg
+echo "boot_sound: boot_sound_next_disable = $boot_sound_next_disable" > /dev/kmsg
+echo -n 0 > /asdf/boot_sound_next_disable
 property=`getprop ro.product.model`
 
 if [ "$property" == "ASUS_I001DA" ] || [ "$property" == "ASUS_I001DB" ]; then
@@ -23,7 +26,8 @@ echo "boot_sound: boot_sound_vol_index = $vol_index" > /dev/kmsg
 echo "boot_sound_file = $boot_sound_file" > /dev/kmsg
 echo "boot_sound property=$property" > /dev/kmsg
 
-if [ "$enabled" == "1" ] && [ "$vol_index" != "0" ]; then
+if [ "$boot_sound_next_disable" != "1" ]; then
+if [ "$enabled" == "1" ] && [ "$vol_index" != "0" ] ; then
     sleep 1.5
 
     i=0
@@ -90,4 +94,7 @@ if [ "$enabled" == "1" ] && [ "$vol_index" != "0" ]; then
     fi
 
     echo "boot_sound: finished" > /dev/kmsg
+fi
+else
+echo "boot_sound: boot_sound_next_disable error" > /dev/kmsg
 fi

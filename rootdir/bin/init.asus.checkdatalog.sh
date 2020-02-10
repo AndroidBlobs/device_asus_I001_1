@@ -4,7 +4,7 @@
 # $1: Caller
 
 echo 1 > /sys/fs/selinux/log
-sleep 3
+sleep 1
 
 mkdir /data/logcat_log
 restorecon /data/everbootup
@@ -26,21 +26,17 @@ if test "$Caller" != ""; then
 fi
 
  
-is_unlocked=`grep -c UNLOCKED=Y /proc/cmdline`
 
 
-if test "$is_unlocked" = "1"; then
-	start logcat-asdf
-fi
 
 
-for logcat in /data/logcat_log/logcat*
-do
-	size=`stat -c%s $logcat`
-	if [ $size -gt 20971520 ]; then
-		truncate -s 10485760 $logcat
-	fi
-done
+#for logcat in /data/logcat_log/logcat*
+#do
+#	size=`stat -c%s $logcat`
+#	if [ $size -gt 20971520 ]; then
+#$		truncate -s 10485760 $logcat
+#$	fi
+#done
 
 for asusevtlog in /asdf/ASUSEvtlog*
 do
@@ -108,12 +104,10 @@ if test -e /data/everbootup; then
 				start logcat
 				start logcat-radio
 				start logcat-events
-				start logcat-asdf
 			else
 				stop logcat
 				stop logcat-radio
 				stop logcat-events
-				stop logcat-asdf
 			fi
 		fi
 #	fi        	
@@ -158,14 +152,12 @@ else
 					stop logcat
 					stop logcat-radio
 					stop logcat-events
-					stop logcat-asdf
 				fi
 			
 			else
 				start logcat
 				start logcat-radio
 				start logcat-events
-				start logcat-asdf
 			fi
 		fi
 	fi
@@ -173,10 +165,6 @@ else
 	echo 0 > /data/everbootup
 fi
 
-boot_complete=`getprop sys.boot_completed`
-if test "$boot_complete" = "1"; then
-	stop logcat-asdf
-fi
 
 # bootcount
 if test -e "/data/bootcount"; then
@@ -194,6 +182,5 @@ echo 0 > /sys/fs/selinux/log
 else
 echo 1 > /sys/fs/selinux/log
 fi
-
 
 

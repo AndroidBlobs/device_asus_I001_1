@@ -184,16 +184,6 @@ on post-fs-data
 #ASUS_BSP Bryant "dng file save path"
      chmod 0777 /data/vendor/camera/
 
-#ASUS_BSP +++ Jason
-on property:sys.boot_completed=1
-
-    # ASUS_BSP +++ Copy dualcam cali data to /data/vendor/camera because AP cannot read /proc and /vendor/facotry
-    copy /proc/driver/dualcam_cali /data/vendor/camera/dualcam_cali
-    chmod 755 /data/vendor/camera/dualcam_cali
-    copy /vendor/factory/dualcam_cali.bin /data/vendor/camera/dualcam_cali.bin
-    chmod 755 /data/vendor/camera/dualcam_cali.bin
-    # ASUS_BSP --- Copy dualcam cali data end
-#ASUS_BSP --- Jason
 
 #ASUS_BSP +++ Bryant "For ATD camera test."
 # Add Camera sensors symlink for ATD
@@ -290,12 +280,17 @@ on property:sys.boot_completed=1
     chown system shell /sys/class/leds/vibrator/vd_clamp
     chown system shell /sys/class/leds/vibrator/mem_play
     chown system shell /sys/class/leds/vibrator/rtp_play
+    chown system shell /sys/class/leds/vibrator/rtp_play_repeat
+    chown system shell /sys/class/leds/vibrator/rtp_play_file
     chown system shell /sys/class/leds/vibrator/rtp_break
     chown system shell /sys/class/leds/vibrator/status_reg
     chown system shell /sys/class/leds/vibrator/trigger_gpio
     chown system shell /sys/class/leds/vibrator/trigger_test
     chown system shell /sys/class/leds/vibrator/trigger_level
     chown system shell /sys/class/leds/vibrator/trigger_waveform
+    chown system shell /sys/class/leds/vibrator/trigger1_waveform
+    chown system shell /sys/class/leds/vibrator/trigger3_waveform
+    chown system shell /sys/class/leds/vibrator/trigger2_enable
     chown system shell /sys/class/leds/vibrator/vib_enable
     chown system shell /sys/dongwoon_haptic_drv
     chown system shell /sys/dongwoon_haptic_drv/enableVIB
@@ -308,6 +303,8 @@ on property:sys.boot_completed=1
     chmod 0777 /sys/class/leds/vibrator/pwm
     chmod 0777 /sys/class/leds/vibrator/mem_play
     chmod 0777 /sys/class/leds/vibrator/rtp_play
+    chmod 0777 /sys/class/leds/vibrator/rtp_play_repeat
+    chmod 0777 /sys/class/leds/vibrator/rtp_play_file
     chmod 0777 /sys/class/leds/vibrator/rtp_break
     chmod 0777 /sys/class/leds/vibrator/vd_clamp
     chmod 0777 /sys/class/leds/vibrator/status_reg
@@ -315,6 +312,9 @@ on property:sys.boot_completed=1
     chmod 0777 /sys/class/leds/vibrator/trigger_test
     chmod 0777 /sys/class/leds/vibrator/trigger_level
     chmod 0777 /sys/class/leds/vibrator/trigger_waveform
+    chmod 0777 /sys/class/leds/vibrator/trigger1_waveform
+    chmod 0777 /sys/class/leds/vibrator/trigger3_waveform
+    chmod 0777 /sys/class/leds/vibrator/trigger2_enable
     chmod 0777 /sys/class/leds/vibrator/vib_enable
     chmod 0777 /sys/dongwoon_haptic_drv/enableVIB
     chmod 0777 /sys/dongwoon_haptic_drv/enableVIB_0832
@@ -1041,7 +1041,7 @@ service asusgesture /vendor/bin/sh /vendor/bin/init.asus.gesture.sh
     disabled 
 
 service gamemode /vendor/bin/init.asus.gamemode.sh
-    seclabel u:r:asus_touch:s0
+    seclabel u:r:vendor_init:s0
     class core
     group system
     user root
@@ -1078,6 +1078,15 @@ service dfps120 /vendor/bin/dfps-120.sh
     group root
     oneshot
     disabled
+    
+service servicecall  /system/bin/sh  /system/bin/surfaceflinger_call.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+   
+    
 # ASUS BSP Display, dfps ---
 
 #ASUS_SZ_BSP Joyce : station goodix touch fw update +++
@@ -1145,6 +1154,17 @@ on property:debug.update.deviceinfo=1
 #    start devinfo
 # ---ASUS_BSP : add for SP ASUS Country config
 
+#ASUS_BSP +++ Jason
+on property:sys.boot_completed=1
+
+    # ASUS_BSP +++ Copy dualcam cali data to /data/vendor/camera because AP cannot read /proc and /vendor/facotry
+    copy /proc/driver/dualcam_cali /data/vendor/camera/dualcam_cali
+    chmod 755 /data/vendor/camera/dualcam_cali
+    copy /vendor/factory/dualcam_cali.bin /data/vendor/camera/dualcam_cali.bin
+    chmod 755 /data/vendor/camera/dualcam_cali.bin
+    # ASUS_BSP --- Copy dualcam cali data end
+#ASUS_BSP --- Jason
+
 # +++ ASUS_BSP : add for write OS Info
 on property:sys.boot_completed=1
     start writeOsInfo
@@ -1211,6 +1231,14 @@ on property:sys.phone.aura.bumper_enable=0
     write /sys/class/leds/aura_sync/bumper_enable 0
     write /sys/class/leds/bumper/VDD 0
 # ASUS_BSP Deeo : Bumper LED switch ---
+
+# ASUS_BSP Deeo : CSC mode for Bumper +++
+on property:vendor.asus.aura.CSCmode=1
+    write /sys/class/leds/aura_sync/CSCmode 1
+
+on property:vendor.asus.aura.CSCmode=0
+    write /sys/class/leds/aura_sync/CSCmode 0
+# ASUS_BSP Deeo :  CSC mode for Bumper ---
 
 # ASUS_SZ_BSP Lotta : Add station key in charger mode +++
 on charger
@@ -1357,6 +1385,12 @@ on property:sys.asus.donglestate_GV_PD=0
 
 on property:sys.asus.donglestate_GV_PD=2
 	setprop vendor.asus.aura.gamepad none
+
+on property:vendor.asus.aura.screenoff=1
+	write /sys/class/tcpc/type_c_port0/Aura_Screen_On 1
+
+on property:vendor.asus.aura.screenoff=0
+	write /sys/class/tcpc/type_c_port0/Aura_Screen_On 0
 # ASUS_BPS Deeo : Add for AuraLight HAL control ---
 
 #ASUS_SZ_BSP Cassie: add fan+++
@@ -1479,6 +1513,11 @@ on property:sys.ec_i2c.donglechmod=1
     chown root system /sys/class/ec_i2c/dongle/device/battery_48_hours_state
     chmod 0664 /sys/class/ec_i2c/dongle/device/set_color_temp
     chown root system /sys/class/ec_i2c/dongle/device/set_color_temp
+    chmod 0664 /sys/class/ec_i2c/dongle/device/reconnect_dp
+    chown root system /sys/class/ec_i2c/dongle/device/reconnect_dp
+
+    chmod 0664 /dev/hidraw*
+    chown root system /dev/hidraw*
 # ASUS_SZ_BSP Lotta: chmod and chown station ec ---
 
 # ASUS_SZ_BSP cassie: chmod and chown station aura +++
@@ -1779,6 +1818,13 @@ on property:debug.asus.touch_update_cfg=0
    start touch_test_cfg
 #ASUS_BSP Beryl ---
 
+#ASUS_BSP Jacob ++++
+on property:vendor.asus.touch_disable_fod=true
+   write sys/devices/platform/goodix_ts.0/disable_fod_state 1
+on property:vendor.asus.touch_disable_fod=false
+   write sys/devices/platform/goodix_ts.0/disable_fod_state 0   
+#ASUS_BSP Jacob ----
+
 # ASUS_SZ_BSP Joyce: station goodix touch test +++
 on property:sys.ec_i2c.donglechmod=1
 	chmod 0777 /sys/devices/platform/goodix_ts_station.0/goodix_init
@@ -1800,6 +1846,27 @@ on property:persist.odm.asus.station_sleep=true
 on property:sys.boot_completed=1
     write /proc/boot_comp 1
 # ASUS_SZ_BSP Lydia: station sleep +++
+
+# ASUS_SZ_BSP Lydia: DP sync fps +++
+on property:vendor.asus.external.fps=60
+    start dfps60
+
+on property:vendor.asus.external.fps=90
+    start dfps90
+
+on property:vendor.asus.external.fps=120
+    start dfps120
+    
+on property:sys.asus.autofota=1
+    write /asdf/boot_sound_next_disable 1
+    setprop sys.asus.autofota 2
+    
+on property:vendor.asus.surfaceflingercall=*
+    start servicecall
+    
+
+    
+# ASUS_SZ_BSP Lydia: DP sync fps ---
 ###-----------------------------------------------###
 #              ALL ASUS on property (end)
 # 
