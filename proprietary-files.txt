@@ -1065,6 +1065,15 @@ vendor/etc/firmware/factory_test/RTP_Layer_TOP_VIB_501.50ms.bin
 vendor/etc/firmware/factory_test/top_vib_max_power.bin
 vendor/etc/firmware/factory_test/top_vib_rated_power.bin
 vendor/etc/firmware/factory_test/top_vib_sweep_rated_power.bin
+vendor/etc/firmware/ifaata.b00
+vendor/etc/firmware/ifaata.b01
+vendor/etc/firmware/ifaata.b02
+vendor/etc/firmware/ifaata.b03
+vendor/etc/firmware/ifaata.b04
+vendor/etc/firmware/ifaata.b05
+vendor/etc/firmware/ifaata.b06
+vendor/etc/firmware/ifaata.b07
+vendor/etc/firmware/ifaata.mdt
 vendor/etc/firmware/vib_demo/01_L-RTP_Layer_640Byte_48Khz_13.33ms.bin
 vendor/etc/firmware/vib_demo/03_L-RTP_Layer_96000Byte_48Khz_2000.00ms.bin
 vendor/etc/firmware/vib_demo/06_L-RTP_Layer_95940Byte_48Khz_1998.75ms.bin
@@ -1372,6 +1381,15 @@ vendor/lib64/libtinyxml2_1.so
 # HotwordEnrollment
 -priv-app/HotwordEnrollmentOKGoogleWCD9340/HotwordEnrollmentOKGoogleWCD9340.apk
 -priv-app/HotwordEnrollmentXGoogleWCD9340/HotwordEnrollmentXGoogleWCD9340.apk
+
+# IFAA
+vendor/bin/hw/vendor.qti.hardware.ifaa@1.0-service
+vendor/bin/ifaa_product
+vendor/etc/init/vendor.qti.hardware.ifaa@1.0-service.rc
+vendor/lib/vendor.qti.hardware.ifaa@1.0.so
+vendor/lib64/libifaaproduct.so
+vendor/lib64/lib_ifaa_tac.so
+vendor/lib64/vendor.qti.hardware.ifaa@1.0.so
 
 # IOP
 vendor/bin/hw/vendor.qti.hardware.iop@2.0-service
@@ -2092,6 +2110,7 @@ vendor/lib64/sensors.ALSPS.so
 vendor/lib64/sensors.ssc.so
 
 # Soter
+-app/SoterService/SoterService.apk
 framework/vendor.qti.hardware.soter-V1.0-java.jar
 lib64/vendor.qti.hardware.soter@1.0.so
 vendor/bin/hw/vendor.qti.hardware.soter@1.0-service
@@ -2248,11 +2267,11 @@ vendor/bin/KmInstallKeybox
 vendor/bin/mdm_helper
 vendor/bin/mlid
 vendor/bin/mm-audio-ftm
+vendor/bin/paycheck
 vendor/bin/read_battery_id_status
 vendor/bin/RestoreCalibrationData
 vendor/bin/sar-vendor-cmd.xml
 vendor/bin/sarproxymgr
-vendor/bin/sar_setting
 vendor/bin/SNTMfgUtil
 vendor/bin/sscrpcd
 vendor/bin/ssgqmigd
@@ -2312,8 +2331,6 @@ vendor/etc/yoda_gamepad_remove.sh
 vendor/etc/yoda_gamepad_switch.sh
 
 # Misc
--vendor/app/ConnectionSecurityService/ConnectionSecurityService.apk
--vendor/app/SSGTelemetryService/SSGTelemetryService.apk
 -vendor/app/TrustZoneAccessService/TrustZoneAccessService.apk
 vendor/bin/ALSPS_sensor_module_number
 vendor/bin/athdiag
@@ -2438,6 +2455,7 @@ vendor/etc/fallback_fonts.xml
 vendor/etc/ftm_test_config_qrd
 vendor/etc/Generic/Launcher/default_workspace/default_allapp.xml
 vendor/etc/Generic/Launcher/default_workspace/phone_workspace.xml
+vendor/etc/Generic/Launcher/default_workspace/phone_workspace_single.xml
 vendor/etc/Generic/TwinViewLauncher/Launcher/default_workspace/phone_workspace.xml
 vendor/etc/Generic/TwinViewLauncher/Launcher/default_workspace/tablet_workspace.xml
 vendor/etc/gpfspath_oem_config.xml

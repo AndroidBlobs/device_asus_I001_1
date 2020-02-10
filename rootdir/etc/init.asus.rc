@@ -505,6 +505,9 @@ on post-fs-data
     chmod 0666 /sys/class/drm/station_sleep
 #ASUS_BSP Lydia ---
 
+#ASUS make BBY folder
+    mkdir /data/vendor/BBY 0777 system system
+
 #####################################################
 #####################################################
 #####################################################
@@ -1733,6 +1736,13 @@ on property:persist.odm.asus.batpolicy=1
 on property:persist.odm.asus.batpolicy=2
 	write /proc/driver/bat_policy 2
 ## ASUS BSP ChiaYuan Add for station balance mode ---
+
+## ASUS BSP ChiaYuan Add for the balance of charging and heat +++
+on property:sys.asus.gamingtype=1
+	write /sys/class/power_supply/battery/device/game_type 1
+on property:sys.asus.gamingtype=0
+	write /sys/class/power_supply/battery/device/game_type 0
+## ASUS BSP ChiaYuan Add for the balance of charging and heat ---
 
 # ASUS_BSP+++ for wlan miracast log
 on property:persist.vendor.asus.miracastlog=1
