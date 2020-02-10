@@ -141,6 +141,8 @@ vendor/etc/acdbdata/ZS660KL_CN/ZS660KL_workspaceFile.qwsp
 # Audio-Hardware
 vendor/lib/hw/audio.primary.default.so
 vendor/lib/hw/audio.primary.msmnile.so
+vendor/lib/hw/audio.r_submix.default.so
+vendor/lib/hw/audio.usb.default.so
 vendor/lib/libtinycompress_vendor.so
 vendor/lib/soundfx/libqcompostprocbundle.so
 vendor/lib/soundfx/libqcomvisualizer.so
@@ -148,6 +150,8 @@ vendor/lib/soundfx/libqcomvoiceprocessing.so
 vendor/lib/soundfx/libvolumelistener.so
 vendor/lib64/hw/audio.primary.default.so
 vendor/lib64/hw/audio.primary.msmnile.so
+vendor/lib64/hw/audio.r_submix.default.so
+vendor/lib64/hw/audio.usb.default.so
 vendor/lib64/libtinycompress_vendor.so
 vendor/lib64/soundfx/libqcompostprocbundle.so
 vendor/lib64/soundfx/libqcomvisualizer.so
@@ -2105,18 +2109,27 @@ vendor/lib/vendor.qti.hardware.tui_comm@1.0.so
 vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
 
 # Thermal
+vendor/bin/hw/android.hardware.thermal@1.0-service
+vendor/bin/init.asus.thermal_conf.sh
 vendor/bin/thermal-engine
 vendor/bin/thermalAtdTool
 vendor/bin/Thermal_GPIO
+vendor/bin/USB_Thermal_Alert
+vendor/etc/dt_thermal_fan.sh
+vendor/etc/inbox_thermal_fan.sh
+vendor/etc/init/android.hardware.thermal@1.0-service.rc
+vendor/etc/station_thermal_fan.sh
 vendor/etc/thermal-engine.conf
 vendor/etc/thermal-engine_CN.conf
 vendor/etc/thermal_atd.conf
+vendor/lib/hw/android.hardware.thermal@1.0-impl.so
+vendor/lib/hw/thermal.msmnile.so
 -vendor/lib/libthermalclient.so
+vendor/lib64/hw/android.hardware.thermal@1.0-impl.so
+vendor/lib64/hw/thermal.msmnile.so
 -vendor/lib64/libthermalclient.so
 
 # Thermal-Hardware
-vendor/lib/hw/thermal.msmnile.so
-vendor/lib64/hw/thermal.msmnile.so
 
 # Time
 -vendor/app/TimeService/TimeService.apk
@@ -2253,7 +2266,6 @@ vendor/bin/sxuvl_auto
 vendor/bin/test_afCaliDB
 vendor/bin/tinyfeedback
 vendor/bin/TypeC_Side_Detect2
-vendor/bin/USB_Thermal_Alert
 vendor/bin/vga_status
 vendor/bin/vppservice
 vendor/bin/widevine_daemon
@@ -2271,7 +2283,6 @@ vendor/etc/dt_hub2_fw_update.sh
 vendor/etc/DT_hub_Detect.sh
 vendor/etc/dt_pdfw_update.sh
 vendor/etc/dt_power_fw_update.sh
-vendor/etc/dt_thermal_fan.sh
 vendor/etc/dt_user_fan.sh
 vendor/etc/ec_i2c_insmod.sh
 vendor/etc/ec_i2c_rmmod.sh
@@ -2283,14 +2294,12 @@ vendor/etc/grip_cal/snt_deco_configs.txt
 vendor/etc/grip_cal/snt_tchwv_configs.txt
 vendor/etc/grip_cal/snt_wfmcfg
 vendor/etc/inbox_aura_fw_update.sh
-vendor/etc/inbox_thermal_fan.sh
 vendor/etc/inbox_user_fan.sh
 vendor/etc/init.asus.set_time.sh
 vendor/etc/shutdown_notify.sh
 vendor/etc/station_aura_fw_update.sh
 vendor/etc/station_fw_update.sh
 vendor/etc/station_pdfw_update.sh
-vendor/etc/station_thermal_fan.sh
 vendor/etc/station_uart_switch.sh
 vendor/etc/station_user_fan.sh
 vendor/etc/update_accy_status2.sh

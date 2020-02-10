@@ -1515,6 +1515,8 @@ on property:sys.ec_i2c.donglechmod=1
     chown root system /sys/class/ec_i2c/dongle/device/set_color_temp
     chmod 0664 /sys/class/ec_i2c/dongle/device/reconnect_dp
     chown root system /sys/class/ec_i2c/dongle/device/reconnect_dp
+    chmod 0664 /sys/class/ec_i2c/dongle/device/PD_FW
+    chown root system /sys/class/ec_i2c/dongle/device/PD_FW
 
     chmod 0664 /dev/hidraw*
     chown root system /dev/hidraw*
